@@ -1,0 +1,17 @@
+# Local-only docs
+.architecture
+.todo
+
+# Node
+node_modules/
+dist/
+
+# Rust
+target/
+
+# Enviroment variables
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
