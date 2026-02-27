@@ -1,0 +1,90 @@
+services:
+
+  # ── HTTP Front Door ──────────────────────────────────────────────────────────
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - gateway
+      - frontend
+
+  # ── Frontend ─────────────────────────────────────────────────────────────────
+  frontend:
+    build: ./frontend
+
+  # ── API Gateway ──────────────────────────────────────────────────────────────
+  gateway:
+    build: ./services/gateway
+    env_file: .env
+    depends_on:
+      - auth
+      - songs
+      - streaming
+      - playlists
+
+  # ── Auth Service ─────────────────────────────────────────────────────────────
+  auth:
+    build: ./services/auth
+    env_file: .env
+    depends_on:
+      - mongo
+
+  # ── Songs Service ─────────────────────────────────────────────────────────────
+  songs:
+    build: ./services/songs
+    env_file: .env
+    volumes:
+      - audio_data:/data/audio
+    depends_on:
+      mongo:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  # ── Streaming Service ─────────────────────────────────────────────────────────
+  streaming:
+    build: ./services/streaming
+    env_file: .env
+    volumes:
+      - audio_data:/data/audio
+
+  # ── Playlists Service ─────────────────────────────────────────────────────────
+  playlists:
+    build: ./services/playlists
+    env_file: .env
+    depends_on:
+      mongo:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  # ── MongoDB ───────────────────────────────────────────────────────────────────
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"   # exposed so local services can connect via localhost
+    volumes:
+      - mongo_data:/data/db
+
+  # ── RabbitMQ ──────────────────────────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"     # exposed so local services can connect via localhost
+      - "15672:15672"   # management UI — dev only
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      # Waits until RabbitMQ is actually accepting connections before marking
+      # this service as healthy. songs and playlists use condition: service_healthy
+      # so they won't start until this passes — preventing connection errors on boot.
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+# ── Volumes ───────────────────────────────────────────────────────────────────
+volumes:
+  mongo_data:   # MongoDB data (users, songs metadata, playlists)
+  audio_data:   # Audio files (written by songs, read by streaming)
+  rabbitmq_data: # RabbitMQ queue persistence

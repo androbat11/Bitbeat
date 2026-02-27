@@ -1,0 +1,10 @@
+/* Global styles — Mantine handles component-level styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}

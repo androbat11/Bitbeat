@@ -1,0 +1,21 @@
+{
+  "name": "bitbeat",
+  "version": "1.0.0",
+  "description": "BitBeat is a full-stack music streaming platform built with a modern, distributed microservices architecture. It allows users to create an account, upload their own music, and stream it from anywhere.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": " docker compose up --build",
+    "stop:dev": "docker compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/androbat11/Bitbeat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/androbat11/Bitbeat/issues"
+  },
+  "homepage": "https://github.com/androbat11/Bitbeat#readme"
+}
