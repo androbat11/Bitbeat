@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": " docker compose up --build",
-    "stop:dev": "docker compose down"
+    "stop:dev": "docker compose down",
+    "watch:dev": "npm run dev --prefix services/auth & npm run dev --prefix services/gateway & npm run dev --prefix services/playlists & wait",
+    "format": "npm run format --prefix services/auth & npm run format --prefix services/gateway & npm run format --prefix services/playlists & wait"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/androbat11/Bitbeat/issues"
   },
-  "homepage": "https://github.com/androbat11/Bitbeat#readme"
+  "homepage": "https://github.com/androbat11/Bitbeat#readme",
+  "dependencies": {
+    "mongo": "^0.1.0"
+  }
 }
