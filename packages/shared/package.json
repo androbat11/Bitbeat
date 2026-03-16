@@ -1,0 +1,17 @@
+{
+  "name": "@bitbeat/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared utilities across Bitbeat services",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0"
+  }
+}
