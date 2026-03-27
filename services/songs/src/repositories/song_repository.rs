@@ -11,7 +11,8 @@ impl SongRepository {
         Self { collection }
     }
 
-    pub async fn insert(&self, song: Song) -> Result<String, MongoError> {
+    // Box<dyn std::error::Error> -> Not optimal solution
+    pub async fn insert(&self, song: Song) -> Result<String, Box<dyn std::error::Error>> {
         let result = self.collection.insert_one(song).await?;
         let id = result
             .inserted_id

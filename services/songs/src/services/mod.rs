@@ -1,2 +1,2 @@
-mod file_service;
-mod song_service;
+pub mod file_service;
+pub mod song_service;

@@ -1,8 +1,9 @@
 import { UserServiceFactory } from "../services/user.gateway.js";
 import { type HttpAuthService, HttpCreateUserRequest$Schema, HttpCreateUserResponse$Schema } from "../types/http-auth.js";
 import { buildServerErrorResponse, withoutAuthentication } from "../middleware/gateway.middleware.js";
+import { authServiceClient } from "../clients/gateway.client.js";
 
-export function userGatewayController(userServiceFactory: UserServiceFactory): HttpAuthService {
+export function userGatewayController(userServiceFactory: () => Promise<ReturnType<typeof authServiceClient>>): HttpAuthService {
     return {
         HttpCreateUser: {
             method: "POST",

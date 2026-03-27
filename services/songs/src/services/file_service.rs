@@ -9,7 +9,7 @@ pub struct FileService {
     upload_directory: String
 }
 
-trait FileStorage {
+pub trait FileStorage {
     async fn upload_song(&self, file: Vec<u8>, extension: &str) -> Result<FilePathReturned, Error>;
 }
 
@@ -25,7 +25,7 @@ async fn write_file(path: String, file: Vec<u8>) -> Result<String, Error> {
     }
 
 impl FileService {
-    fn new (upload_directory: String) -> Self {
+    pub fn new (upload_directory: String) -> Self {
         FileService { upload_directory }
     }
 }
