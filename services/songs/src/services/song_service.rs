@@ -8,7 +8,7 @@ struct CreateSongResponse {
     id: String
 }
 
-struct SongService {
+pub struct SongService {
     file_service: FileService,
     song_repository: SongRepository
 }
