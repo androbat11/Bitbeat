@@ -1,3 +1,4 @@
+// Obviously must go in a env file since it is being loading there, shouldn't tell the port in the string.
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL ?? "http://localhost:3001";
 
 type CreateUserRequest = {
