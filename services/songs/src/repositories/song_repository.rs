@@ -1,9 +1,9 @@
-use mongodb::Collection;
-use mongodb::error::Error as MongoError;
 use crate::models::song::Song;
+use mongodb::error::Error as MongoError;
+use mongodb::Collection;
 
 pub struct SongRepository {
-    collection: Collection<Song>
+    collection: Collection<Song>,
 }
 
 impl SongRepository {
