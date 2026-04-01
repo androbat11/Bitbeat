@@ -1,4 +1,3 @@
-import { UserServiceFactory } from "../services/user.gateway.js";
 import { type HttpAuthService, HttpCreateUserRequest$Schema, HttpCreateUserResponse$Schema } from "../types/http-auth.js";
 import { buildServerErrorResponse, withoutAuthentication } from "../middleware/gateway.middleware.js";
 import { authServiceClient } from "../clients/gateway.client.js";
