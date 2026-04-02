@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { userService } from "../services/auth.service.js";
 
+
+/* Find better way to describe this router */
 export function authRouter(service: Awaited<ReturnType<typeof userService>>) {
     const router = Router();
 
