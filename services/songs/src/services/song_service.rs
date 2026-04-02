@@ -4,8 +4,8 @@ use crate::models::song::Song;
 use crate::repositories::song_repository::SongRepository;
 use crate::services::file_service::{FileService, FileStorage};
 
-struct CreateSongResponse {
-    id: String,
+pub struct CreateSongResponse {
+    pub id: String,
 }
 
 pub struct SongService {
@@ -21,7 +21,7 @@ impl SongService {
         }
     }
 }
-trait SongServiceContract {
+pub trait SongServiceContract {
     async fn load_song(
         &self,
         title: String,
