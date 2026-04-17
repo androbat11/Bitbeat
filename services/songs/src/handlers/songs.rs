@@ -18,6 +18,9 @@ pub async fn upload(service: web::Data<SongService>, mut payload: Multipart) -> 
     let mut file_bytes: Vec<u8> = Vec::new();
     let mut extension = String::new();
 
+    // Update to use a "hashmap" instead of individual variables
+    // let mut file_map = HashMap::new();
+
     // Multipart is an async stream — each iteration yields one form field.
     // `payload.next().await` returns Some(field) until the stream is exhausted.
     while let Some(item) = payload.next().await {

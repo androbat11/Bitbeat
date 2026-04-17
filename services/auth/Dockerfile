@@ -4,7 +4,7 @@ FROM node:lts-alpine3.22 AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 
 COPY tsconfig.json ./
 COPY src/ ./src/

@@ -24,3 +24,11 @@ target/
 *.db
 .beads-credential-key
 .beads/
+
+# F# / .NET
+scripts/.fsx.lock
+scripts/**/*.fsx.lock
+scripts/.ionide/
+scripts/**/obj/
+scripts/**/bin/
+scripts/.packages/
