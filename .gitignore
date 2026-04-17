@@ -15,3 +15,20 @@ target/
 # OS / editor
 .DS_Store
 .vscode/
+
+# partner
+.learning_partner.md
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/
+
+# F# / .NET
+scripts/.fsx.lock
+scripts/**/*.fsx.lock
+scripts/.ionide/
+scripts/**/obj/
+scripts/**/bin/
+scripts/.packages/
